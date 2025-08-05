@@ -15,6 +15,6 @@ public class TestBase {
 
     @AfterSuite
     public void tearDown() {
-        app.stop(); //methods for ApplicationManager link == app
+        //app.stop(); //methods for ApplicationManager link == app
     }
 }
