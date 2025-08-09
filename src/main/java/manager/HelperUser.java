@@ -54,7 +54,14 @@ public class HelperUser extends HelperBase {
     }
 
     public void clickOkButton(){
-        click(By.xpath("//button[text()='Ok']"));
+        //click(By.xpath("//button[text()='Ok']"));
+        java.util.List<org.openqa.selenium.WebElement> btns = wd.findElements(
+                By.xpath("//mat-dialog-container//button[.//span[normalize-space()='Ok'] or .//span[normalize-space()='OK'] or normalize-space()='Ok' or normalize-space()='OK']")
+        );
+        if (!btns.isEmpty()) {
+            btns.get(0).click();
+        }
+
     }
 
     public boolean isLogged() {
@@ -74,6 +81,15 @@ public class HelperUser extends HelperBase {
 //        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
 //        String text = element.getText();
 //        return text;
+    }
+    public boolean isWrongEmail(){
+        return isElementPresent(By.xpath("//div[normalize-space(.)=\"It'snot look like email\"]"));
+    }
+
+    public boolean isWrongPassword() {
+        return isElementPresent(By.xpath(
+                "//*[contains(text(),'Wrong email or password') or contains(text(),'Login or Password incorrect')]"
+        ));
     }
 
     // ========================= REGISTRATION FORM ====================================
@@ -98,4 +114,6 @@ public class HelperUser extends HelperBase {
         JavascriptExecutor js = (JavascriptExecutor) wd;
         js.executeScript("document.querySelector('#terms-of-use').click()");
     }
+
+
 }

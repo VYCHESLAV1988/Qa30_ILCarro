@@ -26,7 +26,7 @@ public class HelperBase {
         }
     }
 
-    public void pause(int time){
+    public void pause(int time) {
         try {
             Thread.sleep(time);
             //Aded method Surround with try/catch ==> Chose to .sleep --> More actions --> Surround with try/catch --> Ok
@@ -44,6 +44,5 @@ public class HelperBase {
         List<WebElement> list = wd.findElements(locator);
         return list.size() > 0;
     }
-
 
 }
