@@ -19,24 +19,19 @@ public class LoginTests extends TestBase {
     @Test
     //    svngdv@gmail.com   A123456789a@      -login and password
     public void loginSuccess() {
-        app.getHelperUser().openLoginRegistrationForm(); //formula  ==   app. --> getHelperUser(). --> openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("svngdv@gmail.com", "A123456789a@");
+        app.getHelperUser().openLoginForm(); //formula  ==   app. --> getHelperUser(). --> openLoginRegistrationForm();
+        app.getHelperUser().fillLoginForm("svngdv@gmail.com", "A123456789a@");
         app.getHelperUser().submitLogin();
-        app.getHelperUser().checkLoged();
+        //Asert if element with text "Logged in success" is present
+        Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+        app.getHelperUser().clickOkButton();
         Assert.assertTrue(app.getHelperUser().isLogged());
         app.getHelperUser().logout();
 
     }
 
-    @Test
-    public void loginSuccess2() {
-        app.getHelperUser().openLoginRegistrationForm(); //formula  ==   app. --> getHelperUser(). --> openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("svngdv@gmail.com", "A123456789a@");
-        app.getHelperUser().submitLogin();
-        app.getHelperUser().checkLoged();
-        Assert.assertTrue(app.getHelperUser().isLogged());
-        app.getHelperUser().logout();
-    }
+    //@Test
+
 
 
 }

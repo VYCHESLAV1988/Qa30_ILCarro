@@ -13,43 +13,42 @@ public class HelperUser extends HelperBase {
         super(wd);
     }
 
-    public void openLoginRegistrationForm() {
+    public void openLoginForm() {
         // ========================  Var1 ===================================
         //WebElement loginTab = wd.findElement(By.xpath("//href[text()='Log in']")); //Var1
         //        WebElement loginTab2 = wd.findElement(By.cssSelector("a[href='login']"));  //Var2
         //        loginTab2.click();
         // ========================  Var2 ===================================
-        click(By.cssSelector("a[href='login']"));
+        //click(By.cssSelector("a[href='login']"));
+        click(By.xpath("//a[text()=' Log in ']"));
 
     }
 
     //Method have take to (String email, String password)
-    public void fillLoginRegistrationForm(String email, String password) {
+    public void fillLoginForm(String email, String password) {
         // ========================  Var1 ===================================
         //        WebElement emailInput = wd.findElement(By.id("email"));
         //        emailInput.click();
         //        emailInput.clear();
         //        emailInput.sendKeys(email);
         // ========================  Var2 ===================================
-
-        type(By.id("email"), email); // method HelperBase
-
 //        WebElement passwordInput = wd.findElement(By.id("password"));
 //        //WebElement confirm = wd.findElement(By)
 //        passwordInput.click();
 //        passwordInput.clear();
 //        passwordInput.sendKeys(password);
 
-
+        type(By.id("email"), email); // method HelperBase
         type(By.id("password"), password);
 
     }
 
     public void submitLogin(){
-        click(By.xpath("//button[text()='Y’alla!']"));
+        //click(By.xpath("//button[text()='Y’alla!']"));  - NO USE Element 'Y’alla!' no find!
+        click(By.xpath("//*[@type='submit']"));
     }
 
-    public void checkLoged(){
+    public void clickOkButton(){
         click(By.xpath("//button[text()='Ok']"));
     }
 
@@ -62,4 +61,14 @@ public class HelperUser extends HelperBase {
         click(By.xpath("//*[text()=' Logout ']"));
     }
 
+    public String getMessage() {
+
+        //pause(2000);  //use new method pause(int time) == HelperBase
+        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText(); //variant 1
+
+        // ==============================Variant 2 ==========================================
+//        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
+//        String text = element.getText();
+//        return text;
+    }
 }
