@@ -74,7 +74,7 @@ public class HelperUser extends HelperBase {
 
     public String getMessage() {
 
-        //pause(2000);  //use new method pause(int time) == HelperBase
+        pause(2000);  //use new method pause(int time) == HelperBase
         return wd.findElement(By.cssSelector(".dialog-container>h2")).getText(); //variant 1
 
         // ==============================Variant 2 ==========================================
