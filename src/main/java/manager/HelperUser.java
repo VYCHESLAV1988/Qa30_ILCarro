@@ -2,6 +2,8 @@ package manager;
 
 import models.User;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 //Public class HelperUser added extends HelperBase and root super
 //public class HelperUser extends HelperBase click to right mice button and chose to Create constructor matching super
@@ -54,14 +56,8 @@ public class HelperUser extends HelperBase {
     }
 
     public void clickOkButton(){
-        //click(By.xpath("//button[text()='Ok']"));
-        java.util.List<org.openqa.selenium.WebElement> btns = wd.findElements(
-                By.xpath("//mat-dialog-container//button[.//span[normalize-space()='Ok'] or .//span[normalize-space()='OK'] or normalize-space()='Ok' or normalize-space()='OK']")
-        );
-        if (!btns.isEmpty()) {
-            btns.get(0).click();
-        }
-
+        if(isElementPresent(By.xpath("//button[text()='Ok']")))
+            click(By.xpath("//button[text()='Ok']"));
     }
 
     public boolean isLogged() {
@@ -114,6 +110,22 @@ public class HelperUser extends HelperBase {
         JavascriptExecutor js = (JavascriptExecutor) wd;
         js.executeScript("document.querySelector('#terms-of-use').click()");
     }
+    //var3 checkbox
+    public void checkPolicyXY() {
+        if(!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
+            Rectangle rect = label.getRect();
+            int w = rect.getWidth();
 
+            // Dimension size = wd.manage().window().getSize();
 
+            int xOffSet = -w / 2;
+            Actions actions = new Actions(wd);
+            actions.moveToElement(label, xOffSet, 0).click().release().perform();
+        }
+    }
+
+    public String getErrorText() {
+    return wd.findElement(By.cssSelector("div.error")).getText();
+    }
 }

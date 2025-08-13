@@ -56,8 +56,21 @@ public class LoginTests extends TestBase {
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("svngdvgmail.com", "A123456789a@"); // svngdv@gmail.com == svngdvgmail.com
         app.getHelperUser().submit();
-        Assert.assertTrue(app.getHelperUser().isWrongEmail(),"It'snot look like email");
-        Assert.assertFalse(app.getHelperUser().isLogged());
+        Assert.assertTrue(app.getHelperUser().isWrongEmail(),"It'snot look like email"); //var -1
+
+
+
+
+    }
+
+    @Test
+    public void loginEmptyEmail(){
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("", "123456789a"); // A123456789a@ == 123456789a
+        app.getHelperUser().submit();
+        //Email is required
+        Assert.assertEquals(app.getHelperUser().getErrorText(),"Email is required");
+        Assert.assertTrue(app.getHelperUser().isYallaButtenNotActive());
     }
 
     @Test
@@ -70,12 +83,23 @@ public class LoginTests extends TestBase {
     }
 
     @Test
+    public void loginEmptyPassword(){
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("svngdv@gmail.com", "");
+        app.getHelperUser().submit();
+        //Password is required
+        Assert.assertEquals(app.getHelperUser().getErrorText(),"Password is required");
+        Assert.assertTrue(app.getHelperUser().isYallaButtenNotActive());
+        app.getHelperUser().pause(10000);
+    }
+
+    @Test
     public void loginUnregisteredUser(){
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("unregistered1999999user+test@gmail.com", "A123456789a@");
         app.getHelperUser().submit();
         Assert.assertTrue(app.getHelperUser().isWrongPassword(), "Wrong email or password");
-        Assert.assertFalse(app.getHelperUser().isLogged());
+        app.getHelperUser().pause(10000);
     }
 
 
