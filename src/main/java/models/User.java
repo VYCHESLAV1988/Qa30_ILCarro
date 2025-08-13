@@ -1,23 +1,19 @@
 package models;
 
 public class User {
-
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    //Create to Getters/Setters == Click to right mice button --> Generate --> Getter (ctrl + a)
-
-    //For Set change to void == User and return this;
-    public User setFirstName(String firstName) {
+    public User withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public User setLastName(String lastName) {
+    public User withLastName(String lastName) {
         this.lastName = lastName;
-        return this;   //old code
+        return this;
     }
 
     public User setEmail(String email) {
@@ -46,14 +42,13 @@ public class User {
         return password;
     }
 
-    //Crete method Generate to String (ctrl+A)
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
