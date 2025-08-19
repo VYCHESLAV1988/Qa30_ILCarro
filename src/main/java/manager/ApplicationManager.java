@@ -34,8 +34,8 @@ public class ApplicationManager {
     public HelperUser getHelperUser() {
         return helperUser;
     }
-
-    public ApplicationManager(HelperCar helperCar) {
-        this.helperCar = helperCar;
+    //added method for HelperCar
+    public HelperCar getHelperCar() {
+        return helperCar;
     }
 }

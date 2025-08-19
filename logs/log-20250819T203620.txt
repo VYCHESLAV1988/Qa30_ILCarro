@@ -1,0 +1,4 @@
+20:36:27.034 INFO  manager.ApplicationManager -- == All test runs in Chrome Browser
+20:36:31.123 INFO  manager.ApplicationManager -- The link URL ==>https://ilcarro.web.app/search
+20:36:31.150 INFO  tests.TestBase -- Name of method ==>loginSuccess
+20:36:38.191 INFO  tests.TestBase -- Test data ==> email: 'svngdv@gmail.com' & password: 'A123456789a@'
